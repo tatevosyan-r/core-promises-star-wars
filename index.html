@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Подключаем css-фреймворк Bulma -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <!-- Библиотека иконок Fontawesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+  <!-- Наши стили -->
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+  <!-- Библотека методов для получения данных про Star Wars -->
+  <script defer src="lib/star-wars.js" type="module"></script>
+  <!-- Скрипт, который вам предстоит написать! -->
+  <script defer src="scripts/search.js" type="module"></script>
+
+  <title>STAR WARS</title>
+</head>
+
+<body>
+  <header>
+    <div class="column is-3">
+      <h1 class="title">STAR WARS</h1>
+    </div>
+  </header>
+
+  <main>
+    <div class="poisk">
+      <section class="section">
+      <div class="column is-half is-offset-2">
+        <div id="byQueryBlock" class="search">
+          <select  class="is-large input" id="select">
+            <option value="People"><b>people</b></option>
+            <option value="planets">planets</option>
+            <option value="species">species</option>
+          </select>
+          <input id="Search" class="is-large input" type="text" placeholder="Search...">
+          <button id="byQueryBtn" class="is-large button">Search</button>
+        </div>
+      </div>
+    </section>
+ <div class="or"><p><b>OR</b></p></div>
+    <section class="section">
+      <div class="column is-half is-offset-2">
+        <div id="byIDblock" class="search">
+          <select  class="is-large input" id="selectID">
+            <option value="People"><b>people</b></option>
+            <option value="planets">planets</option>
+            <option value="species">species</option>
+          </select>
+          <input id="SearchID" class="is-large input" type="text" placeholder="Search...">
+          <button id="byIDbtn" class="is-large button">Get by ID</button>
+        </div>
+      </div>
+    </section>
+    </div>
+    
+
+    <div class="spinnerContainer">
+      <img class="spinner" src="images/dv.png" alt="">
+    </div>
+
+    <section class="section">
+
+      <div id="result-container" class="result column is-5 is-offset-2">
+        <article class="message is-dark">
+          <div class="message-header">
+            <p >Primary</p>
+            <button class="delete" aria-label="delete"></button>
+          </div>
+          <div id="content-box" class="message-body">
+            
+          </div>
+        </article>
+      </div>
+
+    </section>
+  </main>
+</body>
+
+</html>

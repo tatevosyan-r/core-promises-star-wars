@@ -1,0 +1,90 @@
+@font-face {
+  font-family: "Star Jedi";
+  src: url("../fonts/star-jedi.ttf");
+}
+
+body * {
+  font-family: "Star Jedi", arial;
+  text-transform: lowercase;
+}
+option{
+  font-family: "Star Jedi";
+}
+
+.poisk{
+  display: flex;
+  flex-direction: column;
+
+}
+.or{
+ align-self: center;
+}
+body {
+  background-color: #E2E3E5;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: hidden;
+  background-image: url(../images/at-st.jpg);
+}
+
+ul>li>ul>li {
+  margin-left: 30px;
+}
+
+.search {
+  display: flex;
+}
+
+#content {
+  max-height: 35vh;
+  min-height: 35vh;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.result{
+  visibility: hidden;
+}
+/* Контейнер для спиннера */
+.spinnerContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: none; /* По умолчанию скрыт */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Стили для вращающейся картинки */
+.spinner {
+    width: 100px; /* Настройте размер по желанию */
+    height: 100px; /* Настройте размер по желанию */
+    animation: spin 2s linear infinite;
+}
+
+/* Анимация вращения */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+.fade-out {
+    animation: fadeOut 0.3s ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
