@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function showSpinner() {
         spinnerContainer.classList.add('active');
+        setTimeout(hideSpinner,5000)
     } 
     
     function hideSpinner() {
@@ -210,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Ошибка поиска:', error);
             content.innerHTML = '<p class="has-text-danger">Не удалось выполнить поиск. Попробуйте еще раз.</p>';
             updateHeader('error');
+            hideSpinner();
             if (resultBox) resultBox.classList.remove('result');
         } finally {
             // ВСЕГДА скрываем спиннер
