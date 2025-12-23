@@ -13,40 +13,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchByIdInput = document.getElementById('SearchID'); 
     const buttonById = document.getElementById('byIDbtn');
     const selectById = document.getElementById('selectID');
-
-    // Получаем элементы спиннера
+    //спинер
     const spinnerContainer = document.querySelector('.spinnerContainer');
-    const spinnerImage = document.querySelector('.spinner');
-    
-    // Функции для управления спиннером
+
     function showSpinner() {
-        console.log('Показываем спиннер...');
-        if (spinnerContainer) {
-            spinnerContainer.style.display = 'flex';
-            spinnerContainer.classList.remove('fade-out');
-            spinnerContainer.classList.add('fade-in');
-            
-            // Добавляем анимацию вращения к картинке
-            if (spinnerImage) {
-                spinnerImage.style.animation = 'spin 2s linear infinite';
-            }
-        }
-    }
+        spinnerContainer.classList.add('active');
+    } 
     
     function hideSpinner() {
-        console.log('Скрываем спиннер...');
-        if (spinnerContainer) {
-            spinnerContainer.classList.remove('fade-in');
-            spinnerContainer.classList.add('fade-out');
-            
-            // Ждем окончания анимации прозрачности перед скрытием
-            setTimeout(() => {
-                if (spinnerContainer) {
-                    spinnerContainer.style.display = 'none';
-                    spinnerContainer.classList.remove('fade-out');
-                }
-            }, 300);
-        }
+        spinnerContainer.classList.remove('active');
+
     }
     
     // Обработчик для кнопки закрытия (крестик)
@@ -237,9 +213,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (resultBox) resultBox.classList.remove('result');
         } finally {
             // ВСЕГДА скрываем спиннер
-            setTimeout(() => {
-                hideSpinner();
-            }, 300);
+            
+            hideSpinner();
         }
     });
 
@@ -294,9 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (resultBox) resultBox.classList.remove('result');
         } finally {
             // ВСЕГДА скрываем спиннер
-            setTimeout(() => {
-                hideSpinner();
-            }, 300);
+            hideSpinner();
         }
     });
 
@@ -308,26 +281,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-    
-    // Обработчик Enter для поиска по тексту
-    if (search) {
-        search.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                button.click();
-            }
-        });
-    }
-    
-    // Тестовая функция для проверки спиннера (можно удалить)
-    function testSpinner() {
-        console.log('Тестируем спиннер...');
-        showSpinner();
-        setTimeout(() => {
-            console.log('Скрываем тестовый спиннер...');
-            hideSpinner();
-        }, 2000);
-    }
-    
-    // Раскомментируйте для тестирования спиннера
-    // setTimeout(testSpinner, 1000);
 });
