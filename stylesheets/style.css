@@ -7,18 +7,20 @@ body * {
   font-family: "Star Jedi", arial;
   text-transform: lowercase;
 }
-option{
+
+option {
   font-family: "Star Jedi";
 }
 
-.poisk{
+.poisk {
   display: flex;
   flex-direction: column;
+}
 
+.or {
+  align-self: center;
 }
-.or{
- align-self: center;
-}
+
 body {
   background-color: #E2E3E5;
   min-height: 100vh;
@@ -35,26 +37,82 @@ ul>li>ul>li {
   display: flex;
 }
 
-#content {
-  max-height: 35vh;
-  min-height: 35vh;
-  overflow-x: auto;
-  overflow-y: auto;
+/* Стили для контейнера с результатами */
+#result-container {
+  max-height: 60vh; /* Ограничиваем высоту для скролла */
+  overflow: hidden; /* Скрываем переполнение */
 }
 
-.result{
+/* Стили для блока с сообщением */
+.message {
+  max-height: 50vh; /* Ограничиваем высоту сообщения */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Стили для body сообщения с прокруткой */
+.message-body {
+  overflow-y: auto; /* Включаем вертикальную прокрутку */
+  max-height: 45vh; /* Ограничиваем высоту для скролла */
+  padding: 1rem;
+  flex-grow: 1;
+  
+  /* Стили для скроллбара */
+  scrollbar-width: thin;
+  scrollbar-color: #363636 #f5f5f5;
+}
+
+/* Стили для скроллбара в Webkit (Chrome, Safari, Edge) */
+.message-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-body::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.message-body::-webkit-scrollbar-thumb {
+  background-color: #363636;
+  border-radius: 4px;
+  border: 2px solid #f5f5f5;
+}
+
+.message-body::-webkit-scrollbar-thumb:hover {
+  background-color: #000;
+}
+
+/* Стили для информации о персонаже/планете/виде */
+.character-info {
+  line-height: 1.6;
+}
+
+.character-info hr {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid #dbdbdb;
+}
+
+.character-info p {
+  margin-bottom: 0.5rem;
+}
+
+.character-info strong {
+  color: #363636;
+}
+
+.result {
   visibility: hidden;
 }
+
 /* Контейнер для спиннера */
 .spinnerContainer {
-   position: absolute;
-   left: 50%;
-   
-    
-    display: none; /* По умолчанию скрыт */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  position: absolute;
+  left: 50%;
+  display: none; /* По умолчанию скрыт */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
 .spinnerContainer.active {
@@ -63,30 +121,28 @@ ul>li>ul>li {
 
 /* Стили для вращающейся картинки */
 .spinner {
-    width: 100px; 
-    height: 100px;
-    animation: spin 2s linear infinite;
+  width: 100px; 
+  height: 100px;
+  animation: spin 2s linear infinite;
 }
 
 /* Анимация вращения */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-
-
 .fade-out {
-    animation: fadeOut 0.3s ease;
-    animation-fill-mode: forwards;
+  animation: fadeOut 0.3s ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+  from { opacity: 1; }
+  to { opacity: 0; }
 }

@@ -99,17 +99,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Функция для отображения информации о планете
+ // Функция для отображения информации о планете
     function displayPlanetInfo(planet) {
+        // Проверяем значения на "unknown" или "0"
+        const getValue = (value, defaultValue = 'не указан') => {
+            if (!value || value === 'unknown' || value === '0') return defaultValue;
+            return value;
+        };
+
+        // Форматируем числовые значения
+        const formatNumber = (value) => {
+            const cleanValue = getValue(value);
+            if (cleanValue === 'не указан') return cleanValue;
+            if (!isNaN(cleanValue) && cleanValue !== '') {
+                return new Intl.NumberFormat('ru-RU').format(cleanValue);
+            }
+            return cleanValue;
+        };
+
+        const residentsCount = planet.residents ? planet.residents.length : 0;
+        const filmsCount = planet.films ? planet.films.length : 0;
+
         return `
             <div class="character-info">
-                <p><strong>Название:</strong> ${planet.name || 'Неизвестно'}</p>
-                <p><strong>Климат:</strong> ${planet.climate || 'не указан'}</p>
-                <p><strong>Диаметр:</strong> ${planet.diameter ? `${planet.diameter} км` : 'не указан'}</p>
-                <p><strong>Гравитация:</strong> ${planet.gravity || 'не указан'}</p>
-                <p><strong>Террейн:</strong> ${planet.terrain || 'не указан'}</p>
-                <p><strong>Население:</strong> ${planet.population || 'не указан'}</p>
-                <p><strong>Период вращения:</strong> ${planet.rotation_period ? `${planet.rotation_period} часов` : 'не указан'}</p>
-                <p><strong>Орбитальный период:</strong> ${planet.orbital_period ? `${planet.orbital_period} дней` : 'не указан'}</p>
+                <p><strong>Название:</strong> ${getValue(planet.name, 'Неизвестно')}</p>
+                <p><strong>Климат:</strong> ${getValue(planet.climate)}</p>
+                <p><strong>Диаметр:</strong> ${getValue(planet.diameter)} ${planet.diameter && planet.diameter !== '0' && planet.diameter !== 'unknown' ? 'км' : ''}</p>
+                <p><strong>Гравитация:</strong> ${getValue(planet.gravity)}</p>
+                <p><strong>Террейн:</strong> ${getValue(planet.terrain)}</p>
+                <p><strong>Поверхностные воды:</strong> ${getValue(planet.surface_water)} ${planet.surface_water && planet.surface_water !== 'unknown' ? '%' : ''}</p>
+                <p><strong>Население:</strong> ${formatNumber(planet.population)}</p>
+                <hr>
+                <p><strong>Период вращения:</strong> ${getValue(planet.rotation_period)} ${planet.rotation_period && planet.rotation_period !== '0' && planet.rotation_period !== 'unknown' ? 'часов' : ''}</p>
+                <p><strong>Орбитальный период:</strong> ${getValue(planet.orbital_period)} ${planet.orbital_period && planet.orbital_period !== '0' && planet.orbital_period !== 'unknown' ? 'дней' : ''}</p>
+                <hr>
+                <p><strong>Количество жителей:</strong> ${residentsCount}</p>
+                <p><strong>Количество фильмов:</strong> ${filmsCount}</p>
+                <hr>
+                <p><strong>Дата создания:</strong> ${getValue(planet.created)}</p>
+                <p><strong>Дата редактирования:</strong> ${getValue(planet.edited)}</p>
+                <p><strong>URL:</strong> ${planet.url ? `<a href="${planet.url}" target="_blank" rel="noopener noreferrer">${planet.url}</a>` : 'не указан'}</p>
             </div>
         `;
     }
